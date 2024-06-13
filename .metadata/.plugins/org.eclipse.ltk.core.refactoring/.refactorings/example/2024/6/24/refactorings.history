@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;example/src/main/java/com/kh/spring/string/hash/model/vo/student.java&apos; to &apos;Student.java&apos;" description="Rename resource &apos;student.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/kh/spring/string/hash/model/vo/student.java" name="Student.java" stamp="1718257086151" updateReferences="true"/>
+</session>
