@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 13 Jun 2024 00:28:05 GMT</lastBuildDate><item><title><![CDATA[Spring Tools 4.23.0 released]]></title><link>https://spring.io/blog/2024/06/12/spring-tools-4-23-0-released</link><guid isPermaLink="true">https://spring.io/blog/2024/06/12/spring-tools-4-23-0-released</guid><dc:creator><![CDATA[Martin Lippert]]></dc:creator><pubDate>Wed, 12 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 14 Jun 2024 00:27:45 GMT</lastBuildDate><item><title><![CDATA[Spring Framework 6.2.0-M4 available now]]></title><link>https://spring.io/blog/2024/06/13/spring-framework-6-2-0-m4-available-now</link><guid isPermaLink="true">https://spring.io/blog/2024/06/13/spring-framework-6-2-0-m4-available-now</guid><dc:creator><![CDATA[Brian Clozel]]></dc:creator><pubDate>Thu, 13 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to announce the availability of the fourth milestone of Spring Framework 6.2. We shipped quite a few features since our &lt;a href=&quot;https://spring.io/blog/2024/05/22/spring-framework-6-2-0-m3-available-now&quot;&gt;last M3 release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Spring Framework 6.2.0-M4 is available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;repo.spring.io/milestone&lt;/a&gt; now, check out the &lt;a href=&quot;https://github.com/spring-projects/spring-framework/releases/tag/v6.2.0-M4&quot;&gt;detailed release notes for this version&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;core-and-testing&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#core-and-testing&quot; aria-label=&quot;core and testing permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Core and Testing&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/24560&quot;&gt;The &lt;code&gt;Task&lt;/code&gt; and &lt;code&gt;ScheduledTask&lt;/code&gt; types now expose metadata about their execution&lt;/a&gt;: last execution time and outcome, next scheduled execution time...&lt;/p&gt;
+&lt;p&gt;We also made further refinements for the new &lt;code&gt;@TestBean&lt;/code&gt; and &lt;code&gt;@MockitoBean&lt;/code&gt; support. You can &lt;a href=&quot;https://docs.spring.io/spring-framework/reference/6.2/testing/annotations/integration-spring/annotation-testbean.html#page-title&quot;&gt;read our reference documentation&lt;/a&gt; to see this feature in action.&lt;/p&gt;
+&lt;h2 id=&quot;web-and-messaging&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#web-and-messaging&quot; aria-label=&quot;web and messaging permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Web and Messaging&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;@ExceptionHandler&lt;/code&gt; methods are now more flexible as &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/31936&quot;&gt;they support content negotiation during the error handling phase&lt;/a&gt;. This means that you can tailor error handling depending on the content type requested by the HTTP client.&lt;/p&gt;
+&lt;p&gt;Here&apos;s a code snippet showing this feature in action:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@ExceptionHandler(produces = &quot;application/json&quot;)
+public ResponseEntity&amp;#x3C;ErrorMessage&gt; handleJson(IllegalArgumentException exc) {
+	return ResponseEntity.badRequest().body(new ErrorMessage(exc.getMessage(), 42));
+}
+
+@ExceptionHandler(produces = &quot;text/html&quot;)
+public String handle(IllegalArgumentException exc, Model model) {
+	model.addAttribute(&quot;error&quot;, new ErrorMessage(exc.getMessage(), 42));
+	return &quot;errorView&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here, automated clients will get a JSON response, while browsers will display an HTML error page with custom messages.&lt;/p&gt;
+&lt;p&gt;The community requested the following enhancements - and they&apos;re now available!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/32027&quot;&gt;&lt;code&gt;RestClient&lt;/code&gt; now supports request attributes&lt;/a&gt; - a popular request from the community.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/33011&quot;&gt;Codecs and converters now officially support Protobuf 4.x&lt;/a&gt;, raising our baseline to Protobuf 3.29.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Privacy/Privacy_sandbox/Partitioned_cookies&quot;&gt;The new CHIPS feature being deployed by browser&lt;/a&gt; vendors require changes in applications using third-party cookies. Reactive web servers (except Undertow) now &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/31454&quot;&gt;support Partitioned cookies&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;We have introduced &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/32676&quot;&gt;data binding support from HTTP request headers&lt;/a&gt;, to &lt;code&gt;@ModelAttribute&lt;/code&gt; controller method arguments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;62-features-recap&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#62-features-recap&quot; aria-label=&quot;62 features recap permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;6.2 features recap&lt;/h2&gt;
+&lt;p&gt;Check out our &lt;a href=&quot;https://github.com/spring-projects/spring-framework/wiki/What&amp;#x27;s-New-in-Spring-Framework-6.x#whats-new-in-version-62&quot;&gt;What&apos;s New page&lt;/a&gt; for details about the new features available at this point.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Framework 6.1.9, 6.0.22 and 5.3.37 available now]]></title><link>https://spring.io/blog/2024/06/13/spring-framework-6-1-9-6-0-22-and-5-3-37-available-now</link><guid isPermaLink="true">https://spring.io/blog/2024/06/13/spring-framework-6-1-9-6-0-22-and-5-3-37-available-now</guid><dc:creator><![CDATA[Brian Clozel]]></dc:creator><pubDate>Thu, 13 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;6.1.9&lt;/code&gt;, &lt;code&gt;6.0.22&lt;/code&gt; and &lt;code&gt;5.3.37&lt;/code&gt; are available now. This 5.3.x release fixes further AOP regressions that were shipped in 5.3.35.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Framework &lt;code&gt;6.1.9&lt;/code&gt; ships with &lt;a href=&quot;https://github.com/spring-projects/spring-framework/releases/tag/v6.1.9&quot;&gt;37 fixes and documentation improvements&lt;/a&gt;. This version will be shipped with &lt;a href=&quot;https://github.com/spring-projects/spring-boot/milestone/344&quot;&gt;Spring Boot 3.2.7&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-boot/milestone/345&quot;&gt;Spring Boot 3.3.1&lt;/a&gt;, to be released next week.&lt;/li&gt;
+&lt;li&gt;Spring Framework &lt;code&gt;6.0.22&lt;/code&gt; ships with &lt;a href=&quot;https://github.com/spring-projects/spring-framework/releases/tag/v6.0.22&quot;&gt;9 fixes and documentation improvements&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Spring Framework &lt;code&gt;5.3.37&lt;/code&gt; ships with &lt;a href=&quot;https://github.com/spring-projects/spring-framework/releases/tag/v5.3.37&quot;&gt;6 fixes and documentation improvements&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-framework/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-framework&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-framework/reference/&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Abdel Sghiouar, Cloud Native Developer Advocate at Google]]></title><link>https://spring.io/blog/2024/06/13/a-bootiful-podcast-abdel-sghiouar-cloud-native-developer-advocate-at-google</link><guid isPermaLink="true">https://spring.io/blog/2024/06/13/a-bootiful-podcast-abdel-sghiouar-cloud-native-developer-advocate-at-google</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 13 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Abdel Sghiouar is a senior Cloud Native Developer Advocate at Google, a  co-host of the Kubernetes Podcast by Google and a CNCF Ambassador, and it was my pleasure to sit down with him at the amazing Spring IO event in Barcelona and catch up on all things Kubernetes and Google.&lt;/p&gt;
+&lt;iframe title=&quot;Abdel Sghiouar, Cloud Native Developer Advocate at Google&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=g8w7y-163eb65-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Tools 4.23.0 released]]></title><link>https://spring.io/blog/2024/06/12/spring-tools-4-23-0-released</link><guid isPermaLink="true">https://spring.io/blog/2024/06/12/spring-tools-4-23-0-released</guid><dc:creator><![CDATA[Martin Lippert]]></dc:creator><pubDate>Wed, 12 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Dear Spring Community,&lt;/p&gt;
 &lt;p&gt;I am happy to announce the 4.23.0 release of the Spring Tools 4 for Visual Studio Code, Eclipse and Theia.&lt;/p&gt;
 &lt;h4 id=&quot;important-highlights&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#important-highlights&quot; aria-label=&quot;important highlights permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;important highlights&lt;/h4&gt;
 &lt;ul&gt;
@@ -58,172 +93,4 @@
 &lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.3.0&quot;&gt;release notes 3.3.0&lt;/a&gt; for more details.&lt;/p&gt;
 &lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
 &lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-shell/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-shell/reference/index.html&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Functions Catalog 5.0.0 & Spring Cloud Stream Applications 2024.0.0 Available]]></title><link>https://spring.io/blog/2024/06/03/spring-functions-catalog-5-0-0-and-spring-cloud-stream-applications-2024-0-0-released</link><guid isPermaLink="true">https://spring.io/blog/2024/06/03/spring-functions-catalog-5-0-0-and-spring-cloud-stream-applications-2024-0-0-released</guid><dc:creator><![CDATA[Corneil du Plessis]]></dc:creator><pubDate>Mon, 03 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I¡¯m happy to announce that Spring Functions Catalog &lt;code&gt;5.0.0&lt;/code&gt; and Spring Cloud Stream Applications &lt;code&gt;2024.0.0&lt;/code&gt; have been released and are now available from Maven Central.&lt;/p&gt;
-&lt;p&gt;This is the first GA release to use the separate Spring Functions Catalog.&lt;/p&gt;
-&lt;p&gt;Release notes are available:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/spring-cloud/spring-functions-catalog/releases/tag/v5.0.0&quot;&gt;Spring Functions Catalog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/spring-cloud/stream-applications/releases/tag/v2024.0.0&quot;&gt;Stream Applications&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We welcome feedback and contributions, so please reach out to us on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud-dataflow&quot;&gt;Stackoverflow&lt;/a&gt; or &lt;a href=&quot;https://github.com/spring-cloud/spring-functions-catalog/issues&quot;&gt;Spring Functions Catalog - GitHub&lt;/a&gt; or &lt;a href=&quot;https://github.com/spring-cloud/stream-applications/issues&quot;&gt;Stream Applications - GitHub&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[State of Spring Survey 2024 Results]]></title><link>https://spring.io/blog/2024/06/03/state-of-spring-survey-2024-results</link><guid isPermaLink="true">https://spring.io/blog/2024/06/03/state-of-spring-survey-2024-results</guid><dc:creator><![CDATA[Michael Minella]]></dc:creator><pubDate>Mon, 03 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;TL;DR; Download the State of Spring Survey 2024 report &lt;a href=&quot;https://go-vmware.broadcom.com/state-of-spring-2024&quot;&gt;here&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;We asked...and you answered. The State of Spring Survey 2024 walks through all of the latest trends in the Java and Spring ecosystems. Responded to by over 1400 respondents, we asked about virtual threads, testcontainers, and native compilation with GraalVM. You told us about Kubernetes, generative AI, and upgrade practices in your enterprise. The State of Spring Survey 2024 was the most comprehensive survey we have ever put out and we are pleased to be able to share the results with our community.&lt;/p&gt;
-&lt;p&gt;The report, available now at &lt;a href=&quot;https://go-vmware.broadcom.com/state-of-spring-2024&quot;&gt;https://go-vmware.broadcom.com/state-of-spring-2024&lt;/a&gt;, breaks down what we learned into four main areas:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&quot;Spring&quot;ing into the Future - Architectural marvels and tech wonders&lt;/li&gt;
-&lt;li&gt;Blossoming Projects - Spring&apos;s hottest innovations&lt;/li&gt;
-&lt;li&gt;AI Evolution - Navigating the future of development&lt;/li&gt;
-&lt;li&gt;Spring is your Oasis - Essential resources for developers facing change&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Each of these sections provides key insights into how Spring and its ecosystem are used by your peers. We are excited to share the results of this survey as well as hear your continued feedback! Thanks to all who participated in the development of this report and those who responded to the survey!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Cloud 2023.0.2 (OSS) and 2022.0.7 (Enterprise) Have Been Released]]></title><link>https://spring.io/blog/2024/05/31/spring-cloud-2023-0-2-oss-and-2022-0-7-enterprise-have-been-released</link><guid isPermaLink="true">https://spring.io/blog/2024/05/31/spring-cloud-2023-0-2-oss-and-2022-0-7-enterprise-have-been-released</guid><dc:creator><![CDATA[Glenn Renfro]]></dc:creator><pubDate>Fri, 31 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the community, I am pleased to announce that the General Availability (RELEASE) of the &lt;a href=&quot;https://cloud.spring.io&quot;&gt;Spring Cloud 2023.0.2&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href=&quot;https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2023.0.2/&quot;&gt;Maven Central&lt;/a&gt;. You can check out the 2023.0.2 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0-Release-Notes&quot;&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We are also pleased to announce that the General Availability (RELEASE) of the &lt;a href=&quot;https://enterprise.spring.io&quot;&gt;Spring Cloud 2022.0.7&lt;/a&gt; Release Train is available today. More information can be found at &lt;a href=&quot;https://spring.io/support&quot;&gt;https://spring.io/support&lt;/a&gt; .&lt;/p&gt;
-&lt;h2 id=&quot;notable-changes-in-the-202302-release-train&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notable-changes-in-the-202302-release-train&quot; aria-label=&quot;notable changes in the 202302 release train permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notable Changes in the 2023.0.2 Release Train&lt;/h2&gt;
-&lt;p&gt;This release adds compatibility to Spring Boot 3.3.x as well as Spring Boot 3.2.x.&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&quot;https://github.com/orgs/spring-cloud/projects/137&quot;&gt;the GitHub project&lt;/a&gt; for all changes made in this release.&lt;/p&gt;
-&lt;h3 id=&quot;spring-cloud-kubernetes&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-kubernetes&quot; aria-label=&quot;spring cloud kubernetes permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Kubernetes&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Upgraded Kubernetes Java Client To 19.0.1&lt;/li&gt;
-&lt;li&gt;Add selective namespaces to fabric8 loadbalancer &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1604&quot;&gt;(#1604)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Return all PropertySources from the config server &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1600&quot;&gt;(#1600)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;spring-cloud-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-function&quot; aria-label=&quot;spring cloud function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Function&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Ability to mask sensitive values in &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/issues/1140&quot;&gt;AWS workloads&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Enhancements in &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/issues/1138&quot;&gt;AWS serverless web initialisation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Support for null return types in function composition&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;spring-cloud-stream&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-stream&quot; aria-label=&quot;spring cloud stream permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Number of &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/milestone/96?closed=1&quot;&gt;fixes and enhancements&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;spring-cloud-gateway&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-gateway&quot; aria-label=&quot;spring cloud gateway permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Gateway&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Make the client response available as a request attribute in Server WebMVC &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/issues/3405&quot;&gt;(#3405)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;spring-cloud-config&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-config&quot; aria-label=&quot;spring cloud config permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Allow users to provide a customizer to customize the HttpClient behavior &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/issues/2410&quot;&gt;(#2410)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;spring-cloud-netflix&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-netflix&quot; aria-label=&quot;spring cloud netflix permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Netflix&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Add support for configuring RestTemplate via RestTemplateBuilder &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-netflix/pull/4262&quot;&gt;(#4262)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Upgrade to Eureka Server 2.0.2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The following modules were updated as part of 2023.0.2:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Module&lt;/th&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;th&gt;Issues&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Vault&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-vault/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Kubernetes&lt;/td&gt;
-&lt;td&gt;3.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/releases/tag/v3.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Function&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Commons&lt;/td&gt;
-&lt;td&gt;4.1.3&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-commons/releases/tag/v4.1.3&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Openfeign&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Starter Build&lt;/td&gt;
-&lt;td&gt;2023.0.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-starter-build/releases/tag/v2023.0.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Stream&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Gateway&lt;/td&gt;
-&lt;td&gt;4.1.4&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/releases/tag/v4.1.4&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Contract&lt;/td&gt;
-&lt;td&gt;4.1.3&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-contract/releases/tag/v4.1.3&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Config&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Build&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-build/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Spring Cloud Netflix&lt;/td&gt;
-&lt;td&gt;4.1.2&lt;/td&gt;
-&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-netflix/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;As always, we welcome feedback on &lt;a href=&quot;https://github.com/spring-cloud/&quot;&gt;GitHub&lt;/a&gt;, on &lt;a href=&quot;https://gitter.im/spring-cloud/spring-cloud&quot;&gt;Gitter&lt;/a&gt;, on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud&quot;&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href=&quot;https://twitter.com/SpringCloud&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;
-&amp;#x3C;dependencyManagement&gt;
-    &amp;#x3C;dependencies&gt;
-        &amp;#x3C;dependency&gt;
-            &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
-            &amp;#x3C;artifactId&gt;spring-cloud-dependencies&amp;#x3C;/artifactId&gt;
-            &amp;#x3C;version&gt;2023.0.2&amp;#x3C;/version&gt;
-            &amp;#x3C;type&gt;pom&amp;#x3C;/type&gt;
-            &amp;#x3C;scope&gt;import&amp;#x3C;/scope&gt;
-        &amp;#x3C;/dependency&gt;
-    &amp;#x3C;/dependencies&gt;
-&amp;#x3C;/dependencyManagement&gt;
-&amp;#x3C;dependencies&gt;
-    &amp;#x3C;dependency&gt;
-        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
-        &amp;#x3C;artifactId&gt;spring-cloud-starter-config&amp;#x3C;/artifactId&gt;
-    &amp;#x3C;/dependency&gt;
-    &amp;#x3C;dependency&gt;
-        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
-        &amp;#x3C;artifactId&gt;spring-cloud-starter-netflix-eureka-client&amp;#x3C;/artifactId&gt;
-    &amp;#x3C;/dependency&gt;
-    ...
-&amp;#x3C;/dependencies&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or with Gradle:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-groovy&quot;&gt;buildscript {
-dependencies {
-classpath &quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&quot;
-}
-}
-
-apply plugin: &quot;io.spring.dependency-management&quot;
-
-dependencyManagement {
-imports {
-mavenBom &apos;org.springframework.cloud:spring-cloud-dependencies:2023.0.2&apos;
-}
-}
-
-dependencies {
-compile &apos;org.springframework.cloud:spring-cloud-starter-config&apos;
-compile &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&apos;
-...
-}
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-shell/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-shell/reference/index.html&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>

@@ -29,5 +29,5 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<!-- /로 요청받는 모든 것을 appServlet이 무조건 받고 시작한다.  -->
 </web-app>
