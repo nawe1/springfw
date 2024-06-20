@@ -219,8 +219,7 @@ public class MemberController {
 		
 		
 		log.info("loginUser: {}", loginUser);
-	
-		if(bcryptPasswordEncoder.matches(member.getUserPwd(), loginUser.getUserPwd()) && loginUser != null) {
+		if(loginUser != null && bcryptPasswordEncoder.matches(member.getUserPwd(), loginUser.getUserPwd())) {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		}else {
@@ -295,32 +294,70 @@ public class MemberController {
 	}
 		
 	@PostMapping("update.do")
-	public String update(Member member) {
+	public String update(Member member, HttpSession session, Model model) {
 		
 		log.info("수정 요청 멤버:{}",member);
-		
+	
 		// 1 / 0
 		if(memberService.update(member) > 0) {
 			
 			//DB로부터 수정된 회원정보를 다시 조회해서
 			//sessionScope에 loginUser라는 키값으로 덮어씌워줄것!!!
 			
-			memberService.login(member);
+			session.setAttribute("loginUser",memberService.login(member));
 			
 			//1,포워딩
 			//주소값이 노출된다
 			//코드 중복은 유지보수를 힘들게 해서 사용하지 않는게 좋다!
 			//return "member/myPage";
 			
+			
 			//2.리다이렉트
+			
+			//성공메시지 띄우기
+			session.setAttribute("alertMsg","정보 수정 성공");	
+		
 			return "redirect:myPage.do";
 			
 		}else {
-			
-			
+			model.addAttribute("errorMsg","정보 수정에 실패했습니다.");
+			return "common/errorPage";
 		}
 		
-		return null;
+	}
+	
+	@PostMapping("delete.do")
+	public String delete(Member member, HttpSession session, Model model) {
+		
+		//이제 뭘 해야할까?
+		//아이디/비밀번호
+		
+		//비밀번호 잘 맞게 썼나?
+		
+		//매개변수 Member => userPwd : 사용자가 입력한 비밀번호 평문
+		//session의 loginUser키값으로 저장되어있는 Member객체의 userPwd 필드 : DB에 기록된 암호화된 비밀번호
+		
+		String plainPwd = member.getUserPwd();
+		String encPwd = ((Member)session.getAttribute("loginUser")).getUserPwd();
+		//String encPwd = session.getAttribute("loginUser");
+		//1절 Member의 주소
+		//2절 타입
+		
+		if(bcryptPasswordEncoder.matches(plainPwd, encPwd)) {
+			
+			if(memberService.delete(member.getUserId()) > 0) {
+				session.setAttribute("alertMsg", "탈퇴 성공");
+				session.removeAttribute("loginUser");
+				return "redirect:/";
+			}else{
+				model.addAttribute("errorMsg","회원 탈퇴에 실패했습니다.");
+				return "common/errorPage";
+			}
+			//회원 탈퇴기 때문에 아이디 받아서 사용!
+		}else {
+			session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
+			return "redirect : mypage.do";
+		}
 	}
 	
 	//정리!!!

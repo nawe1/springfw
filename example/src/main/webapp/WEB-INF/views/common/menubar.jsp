@@ -56,8 +56,22 @@
         }
 
     </style>
+    
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/semantic.min.css"/>
 </head>
 <body>
+	<script>
+		
+		alertify.alert('Ready!');
+	</script>
 
     <div id="header">
         <div id="header_1">
@@ -77,7 +91,7 @@
                <c:otherwise>
                 
                 <!-- 로그인 후 --> 
-                <lable>${ sessionScope.loginUser.userName }님 환영합니다</label> &nbsp;&nbsp;
+                <label>${ sessionScope.loginUser.userName }님 환영합니다</label> &nbsp;&nbsp;
                 <a href="myPage.do">마이페이지</a>
                 <a href="logout.do">로그아웃</a>
                 </c:otherwise>
@@ -86,9 +100,9 @@
         </div>
         <div id="header_2">
             <ul>
-                <li><a href="">HOME</a></li>
-                <li><a href="">공지사항</a></li>
-                <li><a href="">자유게시판</a></li>
+                <li><a href="#">HOME</a></li>
+                <li><a href="noticePage">공지사항</a></li>
+                <li><a href="boardList?page=1">자유게시판</a></li>
                 <li><a href="">사진게시판</a></li>
             </ul>
         </div>
