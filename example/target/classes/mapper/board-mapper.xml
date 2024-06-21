@@ -6,7 +6,7 @@
   <mapper namespace="boardMapper">
   	
   	<!--  resultType을 적을떄 myBatis에 나온 별칭으로 작성하기! -->
-  	<select id="boardCount" resultType="_int">
+  	<select id="boardCount" resultType="_int" >
   		SELECT
         		COUNT(BOARD_NO)
   		  FROM
@@ -15,15 +15,15 @@
  				STATUS ='Y' 		
   	</select>
   
-  	<select id="board">
+  	<select id="findAll" resultType="board" parameterType="map">
   		SELECT
-		        BOARD_NO,
-		        BOARD_TITLE,
-		        BOARD_WRITER,
+		        BOARD_NO boardNo,
+		        BOARD_TITLE boardTitle,
+		        BOARD_WRITER boardWriter,
 		        COUNT,
-		        CREATE_DATE,
-		        ORIGIN_NAME,
-		        RNUM
+		        CREATE_DATE createDate,
+		        ORIGIN_NAME originName
+		        
 		  FROM
         		(SELECT
 		                 BOARD_NO,
@@ -35,7 +35,7 @@
 		                 ROWNUM RNUM
         			FROM
             			 (SELECT
-				                 BOARD_NO,
+				                 BOARD_NO ,
 				                 BOARD_TITLE,
 				                 BOARD_WRITER,
 				                 COUNT,
@@ -50,8 +50,85 @@
 				              BY  
 				                 BOARD_NO DESC))
 						   WHERE
-                                 RNUM BETWEEN 11 AND 16;
+                                 RNUM BETWEEN #{startValue} AND #{endValue}
   	</select>
   	
+  	<select id ="searchCount" parameterType="hashmap" resultType="int">
+  		SELECT
+  				COUNT(BOARD_NO)
+  		  FROM
+  		  		BOARD
+  		  WHERE
+  		  		STATUS ='Y'
+  		  <if test ="condition == 'writer'">
+  		   AND
+  		  		BOARD_WRITER
+  		  </if>  
+  		   <if test ="condition == 'title'">
+  		  	AND
+  		  		BOARD_TITLE
+  		  </if>  
+  		   <if test ="condition == 'content'">
+  		  	AND
+  		  		BOARD_CONTENT
+  		  </if>  	
+  		  		LIKE '%' || #{keyword} || '%'
+  	</select>
   	
+  	<select id="findByConditionAndKeyWord" parameterType="hashmap" resultType="board">
+  		SELECT
+  			    BOARD_NO boardNo,
+		        BOARD_TITLE boardTitle,
+		        BOARD_CONTENT boardContent,
+		        BOARD_WRITER boardWriter,
+		        CREATE_DATE createDate,
+		        ORIGIN_NAME originName
+  		 FROM
+  		 		BOARD
+  		WHERE
+  				STATUS = 'Y'
+  		 <choose>
+  		 	<when test ="condition == 'writer'">
+  		 		AND BOARD_WRITER
+  		 	</when>
+  		 	<when test ="condition == 'title'">
+  		 		AND BOARD_TITLE
+  		 	</when>
+  		 	<otherwise>
+  		 		AND BOARD_CONTENT
+  		 	</otherwise>
+  		 </choose>
+  		        LIKE '%' || #{keyword} || '%'
+  		ORDER
+  		   BY
+  		   		BOARD_NO DESC
+  	</select>
+  	
+  	<insert id="insert" parameterType="board">
+  		INSERT
+  		  INTO
+  		       BOARD
+  		       (
+  		       BOARD_NO,
+  		       BOARD_TITLE,
+  		       BOARD_CONTENT,
+  		       BOARD_WRITER,
+  		       ORIGIN_NAME,
+  		       CHANGE_NAME
+  		       )
+  		VALUES
+  			   (
+  			   SEQ_BNO.NEXTVAL,
+  			   #{boardTitle},
+  			   #{boardContent},
+  			   #{boardWriter},
+  			   #{originName},
+  			   #{changeName}
+  			   )
+  		
+  	</insert>
+  	
+  	
+  	
+
   </mapper>

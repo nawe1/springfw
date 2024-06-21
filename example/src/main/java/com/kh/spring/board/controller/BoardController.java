@@ -1,10 +1,27 @@
 package com.kh.spring.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.spring.board.model.service.BoardService;
+import com.kh.spring.board.model.vo.Board;
 import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.common.template.PageTemplate;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +32,11 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	
 	private final BoardService boardService;
-
+	
+	//menubar.jsp에서 클릭시 => boardList로!
+	
 	@GetMapping("boardList")
-	public String forwarding(int page) {
+	public String forwarding(@RequestParam(value="page",defaultValue="1") int page,Model model) {
 		
 		// -- 페이징 처리 --
 		
@@ -151,16 +170,148 @@ public class BoardController {
 		 * 시작값 = (currentPage -1) * boradLimit + 1;
 		 * 끝 값 = 시작값 + boardLimit - 1;
 		 */
+		
+		Map<String, Integer> map = new HashMap();
+		
+		int startValue = (currentPage -1) * boardLimit + 1;
+		int endValue = startValue + boardLimit - 1;
+		
+		map.put("startValue", startValue);
+		map.put("endValue", endValue);
+		
+		List<Board> boardList =boardService.findAll(map);
+		
+		log.info("조회된 게시글의 개수: {}", boardList.size());
+		log.info("---------------------------------------");
+		log.info("조회된 게시글 목록: {}", boardList);
+		
+		model.addAttribute("list",boardList);
+		model.addAttribute("pageInfo",pageInfo);
+		
 		return "board/list";
 	}
 	
 	
 	
 	
+	@GetMapping("search.do")
+	public String search(String condition, String keyword,
+			@RequestParam(value="page",defaultValue="1") int page,Model model) {
+		
+		log.info("검색조건: {}", condition);
+		log.info("검색 키워드: {}", keyword);
+	
+		// 사용자가 선택한 조건과 입력한 키워드를 가지고
+		// 페이징처리를 끝낸 후 검색결과를 들고가야함~
+		
+		// "writer","title","content"
+		// 사용자가 입력한 키워드
+		
+		// Map, Class 중 Map 선택
+		Map<String, String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		int searchCount =boardService.searchCount(map);
+		log.info("검색 조건에 부합하는 행의 수:{}", searchCount);
+		int currentPage =page;
+		int pageLimit =3;
+		int boardLimit = 3;
+		
+		PageInfo pageInfo = PageTemplate.getPageInfo(searchCount, currentPage, pageLimit, boardLimit);
+		
+		//offset, limit
+		RowBounds rowBounds = new RowBounds((currentPage - 1) * boardLimit,boardLimit);
+		
+		//MyBatis에서는 페이징 처리를 위해 RowBounds라는 클래스를 제공
+		// *offset, limit 
+		
+		/**
+		 * boardLimit 이 3일 경우
+		 * 
+		 * currentPage : 1-> 1~3 ==> 0(offset)
+		 * currentPage : 2-> 4~6 ==> 3(offset)
+		 * currentPage : 3-> 7~9 ==> 6(offset)
+		 * 
+		 * 
+		 * (currentPage - 1) * boardLimit;
+		 * 
+		 * 
+		 */
+		List<Board> boardList = boardService.findbyConditionAndKeyWord(map, rowBounds);
+		model.addAttribute("list",boardList);
+		model.addAttribute("pageInfo",pageInfo);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("condition",condition);
+		
+		return "board/list";
+	}
 	
 	
+	@GetMapping("boardForm.do")
+	public String boardFormForwarding() {
+		return "board/insertForm";
+	}
 	
-	
-	
-	
+	@PostMapping("insert.do")
+	public String insert(Board board,MultipartFile upfile, HttpSession session, Model model) { //주소가 있나 없나로 판단해야한다.
+		
+		//log.info("게시글정보:{}",board);
+		//log.info("파일의 정보: {}",upfile);
+		
+		//첨부파일 존재 o / 존재 x
+		//Multipart객체는 무조건 생성!!
+		// => fileName필드에 원본명이 존재하는가 / 없는가
+		
+		//전달된 파일이 존재할 경우=> 파일 업로드!!
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			// kh_년월일시분초_랜덤한값.확장자
+			
+			String originName = upfile.getOriginalFilename();
+			
+			String ext =originName.substring(originName.lastIndexOf("."));
+			
+			int num = (int)(Math.random() * 100) + 1;
+			//double - 0.0 ~ 0.9999999999999
+			
+			String currentTime =new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			
+			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+			
+			String changeName ="KH_" + currentTime + "_" + num + ext;
+			
+			try {
+				upfile.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			//첨부파일이 존재한다.
+			//1. 업로드 완료
+			//2. Board객체에 originName + changeName
+			board.setOriginName(originName);
+			board.setChangeName(savePath + changeName);
+		}
+		
+		//첨부파일이 존재하지 않을 겨우 board  제목/ 내용 / 작성자  
+		//첨부파일이 존재할 경우 board: 제목/ 내용 / 작성자 / 원본명 / 변경된 경로와 이름
+		
+		//어쩌고 저쩌고 디비간다 와~~~~
+		if(boardService.insert(board) > 0) {
+			session.setAttribute("alertMsg","게시글 작성 성공~");
+			
+			//무조건 리다이렉트 해야함!!
+			return "redirect:boardList";
+			
+		}else {
+			model.addAttribute("errorMsg","게시글 작성 실패 ... ㅠ");
+			return "common/errorPage";
+		}
+		
+		
+		//return "redirect: board/insertForm.do";
+	}
 }

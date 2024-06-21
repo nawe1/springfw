@@ -1,13 +1,48 @@
 package com.kh.spring.board.model.repository;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.board.model.vo.Board;
+
 @Repository
 public class BoardRepository {
+
 
 	public int boardCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("boardMapper.boardCount");
 	}
 
+
+	public List<Board> findAll(SqlSessionTemplate sqlSession, Map<String, Integer> map) {
+		return sqlSession.selectList("boardMapper.findAll",map);
+		//sqlSession.selectList("boardMapper.findAll",null,rowBounds);
+		//RowBounds객체를 넘겨야할 경우
+		//SelectList()의 오러로딩된 형태중 매개변수가 3개인 메소드로 반드시 꼭 꼭 꼭 무조건 절대로 이걸로 호출해야함!!!
+		// 두 번쨰 인자값으로 전달할 값이 없다면 null값을 넘기면됨!
+	}
+
+
+	public int searchCount(SqlSessionTemplate sqlSession, Map<String, String> map) {
+		return sqlSession.selectOne("boardMapper.searchCount",map);
+	}
+
+
+	public List<Board> findbyConditionAndKeyWord(SqlSessionTemplate sqlSession, Map<String, String> map,
+			RowBounds rowBounds) {
+		return sqlSession.selectList("boardMapper.findByConditionAndKeyWord",map,rowBounds);
+	}
+
+
+	public int insert(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.insert("boardMapper.insert",board);
+	}
+	
+	
+	
+	
 }

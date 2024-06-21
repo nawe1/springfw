@@ -25,7 +25,8 @@ SELECT
 
 
 
-
+alter table board modify (change_name varchar2(200));
+commit;
 
 
  --INLINEVIEW
