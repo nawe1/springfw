@@ -68,10 +68,6 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/semantic.min.css"/>
 </head>
 <body>
-	<script>
-		
-		alertify.alert('Ready!');
-	</script>
 
     <div id="header">
         <div id="header_1">

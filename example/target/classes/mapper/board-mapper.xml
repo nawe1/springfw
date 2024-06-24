@@ -5,6 +5,17 @@
   
   <mapper namespace="boardMapper">
   	
+  	<sql id="selectBoard">
+  		SELECT
+  				BOARD_NO boardNo,
+		        BOARD_TITLE boardTitle,
+		        BOARD_WRITER boardWriter,
+		        COUNT count,
+		        CREATE_DATE createDate,
+		        ORIGIN_NAME originName,
+		        CHANGE_NAME changeName
+  				
+  	</sql>
   	<!--  resultType을 적을떄 myBatis에 나온 별칭으로 작성하기! -->
   	<select id="boardCount" resultType="_int" >
   		SELECT
@@ -22,7 +33,8 @@
 		        BOARD_WRITER boardWriter,
 		        COUNT,
 		        CREATE_DATE createDate,
-		        ORIGIN_NAME originName
+		        ORIGIN_NAME originName,
+		       	CHANGE_NAME changeName
 		        
 		  FROM
         		(SELECT
@@ -32,6 +44,7 @@
 		                 COUNT,
 		                 CREATE_DATE,
 		                 ORIGIN_NAME,
+		                 CHANGE_NAME,
 		                 ROWNUM RNUM
         			FROM
             			 (SELECT
@@ -41,6 +54,7 @@
 				                 COUNT,
 				                 CREATE_DATE,
 				                 ORIGIN_NAME,
+				                 CHANGE_NAME,
 				                 ROWNUM RNUM
                            FROM
 				                 BOARD
@@ -129,6 +143,52 @@
   	</insert>
   	
   	
+  	<update id="increaseCount" parameterType="_int">
+  		UPDATE
+  			   BOARD
+  		   SET
+  		   	   COUNT=COUNT + 1
+  	     WHERE
+  	     	   BOARD_NO=#{boardNo}
+  		   AND
+  		   	   STATUS='Y'
+  	</update>
   	
+	<select id="findById" parameterType="_int" resultType="board">
+		<include refid="selectBoard"/>
+		FROM
+			   BOARD
+		WHERE
+			   BOARD_NO =#{boardNo}
+	</select>
+
+
+
+	<update id="delete" parameterType="_int">
+		UPDATE 
+			   BOARD
+		   SET
+               STATUS='N'
+		 WHERE
+			   BOARD_NO=#{boardNo}
+	</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </mapper>

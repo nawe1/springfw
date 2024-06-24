@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -42,7 +43,25 @@ public class BoardRepository {
 		return sqlSession.insert("boardMapper.insert",board);
 	}
 	
+	public int increaseCount(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.increaseCount", boardNo);
+	}
+
+
+	public Board findById(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.findById",boardNo);
+	}
+
+
+	public int delete(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.delete",boardNo);
+	}
+
+
+	public int update(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.update("boardMapper.update",board);
+	}
 	
-	
+
 	
 }

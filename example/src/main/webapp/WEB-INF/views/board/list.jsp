@@ -80,7 +80,7 @@
                 		</c:when>
                 		<c:otherwise>
 	                		<c:forEach var="board" items="${ list }" varStatus="status">
-			                    <tr>
+			                    <tr class = "board-detail" id=${board.boardNo } onclick="location.href='board-detail?boardNo=${board.boardNo}'">
 			                        <td>${board.boardNo }</td>
 			                        <td>${board.boardTitle }</td>
 			                        <td>${board.boardWriter }</td>
@@ -100,7 +100,38 @@
                 </tbody>
             </table>
             <br>
-
+			<script>
+				$(() => {
+					
+					$('.board-detail').click(e => {
+						//location.href= '${board.boardNo }';  // 클릭시 여기로 이동한다!
+						
+						//console.log(e.target);
+						//console.log(e.currentTaget.id.split('-')[1]); 이런식으로 뽑아서 사용할 수 있다.
+						//console.log($(e.currentTaget).children().eq(0).text());
+						//find('선택자') <-- 활용도가 가장 높음
+						//children() <-- 하나씩 찾아가는 녀석
+					}) ;
+					
+					//alert('하이하이');
+					
+					//location.href= '리터럴값';
+					
+					//$('.board-detail').on('click',handler())
+					//.0n() --> 권장사항
+					//사용시 고려사항 - 1. 어떤 친구들을 == eventTarget , 2.언제 사용할 것인가 == eventType
+					//순수 JS로 작성시 .addEventListener() --> 권장사항
+					// on이벤트 속성 = 
+					// 익명함수 대입~ 도 있고
+					//	인라인 방식도 있고~
+					
+					// $
+					// .on()
+					// 이벤트타입();
+			
+					location.href ='board-detail?boardNo=' + e.currentTarget.id.split('-')[1];
+				} 
+			</script>
             <div id="pagingArea">
                 <ul class="pagination">
                     <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.board.model.service.BoardService;
 import com.kh.spring.board.model.vo.Board;
@@ -267,7 +268,7 @@ public class BoardController {
 		
 		if(!upfile.getOriginalFilename().equals("")) {
 			// kh_년월일시분초_랜덤한값.확장자
-			
+			/*
 			String originName = upfile.getOriginalFilename();
 			
 			String ext =originName.substring(originName.lastIndexOf("."));
@@ -288,12 +289,12 @@ public class BoardController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+			*/
 			//첨부파일이 존재한다.
 			//1. 업로드 완료
 			//2. Board객체에 originName + changeName
-			board.setOriginName(originName);
-			board.setChangeName(savePath + changeName);
+			board.setOriginName(upfile.getOriginalFilename());
+			board.setChangeName("resources/uploadFiles/"+ saveFile(upfile,session));
 		}
 		
 		//첨부파일이 존재하지 않을 겨우 board  제목/ 내용 / 작성자  
@@ -314,4 +315,185 @@ public class BoardController {
 		
 		//return "redirect: board/insertForm.do";
 	}
+	
+	//localhost/spring/board-detail?boardNo=???
+	@GetMapping("board-detail")
+	//public ModelAndView findbyBoardNo(HttpServletRequest request,@RequestParam(value="boardNo") int boardNo){어떻게 생각하는지 구조를 생각하고 쓰자!
+	public ModelAndView findbyId(int boardNo,ModelAndView mv) {
+		
+		//int abe = Integer.parseInt("123"); //파싱 이라고 하지 형변환이라고 하지 않는다.
+		
+		
+		//1.데이터가공 --> 한개라서 할게 없네...
+		//2. 서비스 호출
+		
+		//사용자가 찾고자하는 번호가 없는 경우도 있기 때문에 increaseCount를 먼저 사용!
+		if(boardService.increaseCount(boardNo) > 0) {
+			//3.응합화면 지정
+			mv.addObject("board",boardService.findById(boardNo)).setViewName("board/boardDetail");
+		}else {
+			mv.addObject("errorMsg", "게시글 상세조회에 실패했습니다.").setViewName("common/errorPage");
+			
+		}
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * deleteById : Client(게시글 작성자)에게 정수형의 boardNo(BOARD테이블의 PK)를 받아서 BOARD테이블의 존재하는 STATUS컬럼의 값을 'N'으로
+	 * 				갱신
+	 * @param boardNo: 각 행을 식별하기 위한 PK
+	 * @param filePath: 요청 처리 성공 시 첨부파일을 제거하기 위해 파일이 저장되어있는 경로 및 파일명
+	 * 
+	 * @return : 반환된 View의 논리적인 경로
+	 * 
+	 * 
+	 */
+	
+	@PostMapping("boardDelete.do")
+	public String deleteById(int boardNo,String filePath,
+								HttpSession session, Model model) {
+		
+		
+		/**
+		 * 질문의 구조
+		 * 
+		 * 1.내가 지금 무슨 일 하고 있는지
+		 * 
+		 * 2.어느 부분에서 무슨 문제가 발생했는지
+		 * 
+		 * 3. 제 생각에는... 제가 요거를 찾아가지고 어떤어떤 방법으로 해결을 해보려했으나...
+		 * 
+		 * 4. 어떤 방법을 사용하면 될까요?
+		 */
+		
+		if(boardService.delete(boardNo) > 0) {
+			//메소드 호출을 널값을 주고 비교를 하면 죽었다 꺠어나도 절대 NullPointerException이 일어나지 않는다.
+			if(!"".equals(filePath)) {
+				new File(session.getServletContext().getRealPath(filePath)).delete();
+			}
+			
+			session.setAttribute("alertMsg", "게시글 삭제 성공!!!");
+			return "redirect:boardList";
+		
+		}else {
+			model.addAttribute("errorMsg","게시글 삭제 실패!");
+			return "common/errorPage";
+		}		
+	}
+	
+	
+	
+	
+	
+	@PostMapping("boardUpdateForm.do")
+	public ModelAndView updateForm(ModelAndView mv, int boardNo) {
+		
+		mv.addObject("board",boardService.findById(boardNo)).setViewName("board/boardUpdate");
+		return mv;
+	}
+	
+	@PostMapping("board-update.do")
+	public String update(Board board, MultipartFile reUpFile,HttpSession session) {
+		
+		//DB가서 boardNo가서 업데이트 하러 가기!
+		
+		//Board board
+		/**
+		 * boardTitle, boardContent -> 수정 사항
+		 * boardWriter,boardNo ->수정할 필요없음
+		 * 
+		 * * file
+		 * 
+		 * 1.기존 첨부파일X, 새로운 첨부파일 X => 그렇구나~ 패스하면 된다.
+		 * 
+		 * 2.기존 첨부파일 0, 새로운 첨부파일 X => origin: 기존 첨부파일 이름, change: 기존 첨부파일 경로
+		 * 
+		 * 3.기존 첨부파일 X, 새로운 첨부파일 O => origin: 새로운 첨부파일 이름, change: 새로운 첨부파일 경로
+		 * 
+		 * 4. 기존 첨부파일 O, 새로운 첨부파일 O => origin: 새로운 첨부파일 이름, chagne: 새로운 첨부 파일 경로
+		 * 
+		 * 
+		 */
+		
+		//새로운 첨부파일이 존재하는가! 를 먼저 체크해야한다!
+		if(!reUpFile.getOriginalFilename().equals("")) {
+			
+			board.setOriginName(reUpFile.getOriginalFilename());
+			board.setChangeName(saveFile(reUpFile,session));
+			
+		}
+			
+		
+		if(boardService.update(board) > 0){
+			session.setAttribute("alertMsg","잘바뀌었어~~~개꿀루루ㅜ루룰");
+			return "redirect:board=detail?boardNo=" +board.getBoardNo();
+		}else {
+			session.setAttribute("errorMsg","정보수정에 실패했어~~~");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	public String saveFile(MultipartFile upfile,HttpSession session) {
+		String originName = upfile.getOriginalFilename();
+		
+		String ext =originName.substring(originName.lastIndexOf("."));
+		
+		int num = (int)(Math.random() * 100) + 1;
+		
+		String currentTime =new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		
+		String changeName ="KH_" + currentTime + "_" + num + ext;
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
+	}
+	
+	//오늘의 과제
+	
+	//공지사항(Notice):상세보기,수정하기,삭제하기 기능 구현하기
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
