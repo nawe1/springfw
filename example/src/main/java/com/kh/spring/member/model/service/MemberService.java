@@ -20,8 +20,9 @@ public interface MemberService {
 	
 	// 회원 탈퇴(DELETE)
 	int delete(String userId);
-	
+
 	// 아이디 중복체크(SELECT)
-	
+	int idCheck(String checkId);
+
 	// 메일인증
 }

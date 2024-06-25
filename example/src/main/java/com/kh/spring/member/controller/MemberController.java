@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.service.MemberService;
@@ -368,5 +369,33 @@ public class MemberController {
 	//spring/board
 	
 	//get/post/put/patch/delete
-}	
+	@ResponseBody
+	@GetMapping("idcheck.do")
+	public String checkId(String checkId) {
+		
+		//int result = memberService.idCheck(checkId);
+		
+		/*
+		if(result > 0) {
+			return "NNNNN";
+		}else {
+			return "NNNNY";
+		}
+		*/
+		// NNNNY / NNNNN 이 나오게 하는 것이다.
+		//return "";
+		
+		//return result > 0 ? "NNNNN" : "NNNNY";
+		//오늘의 과제
+		//마이페이지 => 회원 정보 수정 / 회원 탈퇴
+		// 비밀번호 변경 
+		//AJAX를 활용한 비밀번호 변경 기능 구현하기! - 비밀번호/새로운 비밀번호/ 새로운 비밀번호 재입력을 구현해야한다! - 할려면 비밀번호가 맞는지 중복체크부터!
+	
+		return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
+	}
+	
+	
+
+}
+	
 

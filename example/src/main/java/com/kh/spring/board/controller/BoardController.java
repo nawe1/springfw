@@ -412,7 +412,7 @@ public class BoardController {
 		 * 
 		 * 3.기존 첨부파일 X, 새로운 첨부파일 O => origin: 새로운 첨부파일 이름, change: 새로운 첨부파일 경로
 		 * 
-		 * 4. 기존 첨부파일 O, 새로운 첨부파일 O => origin: 새로운 첨부파일 이름, chagne: 새로운 첨부 파일 경로
+		 * 4.기존 첨부파일 O, 새로운 첨부파일 O => origin: 새로운 첨부파일 이름, change: 새로운 첨부 파일 경로
 		 * 
 		 * 
 		 */
@@ -464,7 +464,15 @@ public class BoardController {
 	
 	//공지사항(Notice):상세보기,수정하기,삭제하기 기능 구현하기
 	
+	@GetMapping("image-board")
+	public String images(Model model) {
+		
+		//List<Board>images =boardService.selectImages();
+		
+		model.addAttribute("board",boardService.selectImages());
 	
+		return "board/imageList";
+	}
 	
 	
 	

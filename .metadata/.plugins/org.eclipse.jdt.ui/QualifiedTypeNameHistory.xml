@@ -4,8 +4,10 @@
     <fullyQualifiedTypeName name="com.kh.spring.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.model.vo.PageInfo.PageInfoBuilder"/>
-    <fullyQualifiedTypeName name="com.kh.spring.common.model.vo.PageInfo"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.template.PageTemplate"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="com.kh.spring.common.model.vo.PageInfo"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>
