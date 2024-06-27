@@ -66,7 +66,7 @@
 		- type: 요청 전송방식(GET/POST/PUT/DELETE => 생략 시 기본값은 get)
 		- data: 요청시 전달할 값({키:벨류, 키:벨류...}) => for태그의 input요소의 value속성
 		- success : AJAX통신 성공 시 콜백함수를 정의
-	
+	E
 		-----------------------------------------------------------------------
 	
 		- error: AJAX통신 실패 시 콜백함수를 정의
@@ -99,60 +99,191 @@
 	<!--  버튼을 클릭 시 => 메뉴에 입력한 음식명과 수량에 입력한 개수를 가지고 서버에 요청해서 => 응답받은 응답데이터를 div요소의 content영역에 출력 -->
 	
 	<script>
-		//console.log(btn); 이거는 금지사항!!!	
-		document.getElementById('btn').onclick = () =>{
-			const menuValue =document.getElementById('menu').Value;
-			const amountValue= document.getElementById('amount').Value; 
-			$.ajax({
-				url : 'ajax.do',    //필수 정의 속성(매핑값)
-				type: 'get',        //요청시 전달 방식
-				data: {             //요청 시 전달 값(key-value);
-					menu : document.getElementById('menu').Value,
-					amount : document.getElementById('amount').Value 
-				},
-				success : result => {
-					
-					const resultValue != 0 ? "선택하신 메뉴는 " + menuValue + '' +amountValue + '개의 가격은 : ' + result + '원입니다.';
-					document.getElementById('resultMsg').innerHtml=resultValue;
-				},
-				error : () => {
-					console.log('아마 오타가 나지 않았을까??');
-				}
+    document.getElementById('btn').onclick = () => {
+        const menuValue = document.getElementById('menu').value; // 'Value'를 'value'로 수정
+        const amountValue = document.getElementById('amount').value; // 'Value'를 'value'로 수정
+        $.ajax({
+            url: 'ajax.do',
+            type: 'get',
+            data: {
+                menu: menuValue, // 직접 변수 사용
+                amount: amountValue // 직접 변수 사용
+            },
+            success: result => {
+                // '!='를 '!=='로 변경하고, 삼항 연산자 구문 수정
+                const resultValue = result !== 0 ? `선택하신 메뉴는 ${menuValue} ${amountValue}개의 가격은 : ${result}원입니다.` : "";
+                document.getElementById('resultMsg').innerHTML = resultValue; // 'innerHtml'을 'innerHTML'로 수정
+            },
+            error: () => {
+                console.log('아마 오타가 나지 않았을까??');
+            }
+        });
+    }
+</script>
+	
+
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<h3>2. DB에서 SELECT문을 이용해서 조회했다는 가정하에 VO객체를 응답받아서 화면상에 출력해보기</h3>
+	
+	조회할 음식번호: <input type="number" id="menuNo" /><br><br/>
+	
+	<button id="select-btn">조회</button>
+
+	<div id="today-menu">
+		
+		
+		
+	</div>
+	
+	<script>
+	
+		window.onload = () =>{
+			
+			document.getElementById('select-btn').onclick = () =>{
 				
-			});			
+				$.ajax({
+					//url: 'ajax2.do',
+					url:'ajax3.do',
+					type: 'get',
+					data: {
+						menuNumber : document.getElementById('menuNo').value
+					},
+					success : result =>{
+						//console.log(result);
+						
+						const obj ={
+								"menuNumber" : "1",
+								"menuName" : "순두부",
+								"price" : "9500",
+								"meterial" : "순두부"
+						};
+						//console.log(obj);
+					
+					
+						const menu = '<ul>||오늘의 메뉴|| : ' 
+									+ '<li>' + result.menuName 
+									+ '<li>' + result.price + '원</li>'
+									+ '<li>재료 : ' + result.meterial + '</li>';
+						
+						document.getElementById('today-menu').innerHtml = menu;
+						
+
+					
+					},
+					error: e => {
+						console.log(e);
+					}
+				
+				
+				});
+			};		
 			
 		}	
-		
+	
 	</script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<h3>3. 조회 후 리스트를 응답받아서 출력</h3>
+
+<button onclick="findAll()">메뉴 전체 조회</button>
+<br><br>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<table border="1" id="find-result">
+	<thead>
+		<tr>
+			<th>메뉴명</th>
+			<th>가격</th>
+			<th>재료</th>
+		</tr>
+	</thead>	
+	<tbody id='tbody'>
+		
+		
+	</tbody>
+</table>
+<script>
+	function findAll(){
+		
+		$.ajax({
+		
+			url: 'find.do',
+			type: 'get',
+			success : result => {
+				
+				console.log(result);
+				
+				const tbodyE1 = document.getElementById('tbody');
+				
+				//철번쨰는 순차적으로 접근해서 첫번쨰 요소가 매개변수가 된다. 2번쨰는 인덱스가 들어간다.
+				result.map(o => {
+					
+					//console.log(o);
+					//console.log(i);
+					const trE1 = document.createElement('tr');
+					//console.log(trE1);
+					
+					const tdFirst = document.createElement('td');
+					//console.log(tdFirst);
+					const firstText = document.createTextNode(o.menuName);
+					tdFirst.style.width='200px';
+					tdFirst.appendChild(firstText);
+					console.log(tdFirst);
+					
+					const tdSecound = document.createElement('td');
+					const secoundText = document.createTextNode(o.price);
+					tdSecound.style.width = '200px';
+					tdSecound.appendChild(secoundText);
+					
+					const tdThird = document.createElement('td');
+					const thirdText = document.createTextNode(o.material);
+					tdThird.style.width = '100px';
+					tdThird.appendChild(thirdText);
+					
+					trE1.appendChild(tdFirst);
+					trE1.appendChild(tdSecound);
+					trE1.appendChild(tdThird);
+					
+					tbodyE1.appendChild(trE1);
+					
+				});
+				/*
+				const trE1 = document.createElement('tr');
+				//console.log(trE1);
+				
+				const tdFirst = document.createElement('td');
+				//console.log(tdFirst);
+				const firstText = document.createTextNode(result[0].menuName);
+				tdFirst.style.width='200px';
+				tdFirst.appendChild(firstText);
+				console.log(tdFirst);
+				
+				const tdSecound = document.createElement('td');
+				const secoundText = document.createTextNode(result[0].price);
+				tdSecound.style.width = '200px';
+				tdSecound.appendChild(secoundText);
+				
+				const tdThird = document.createElement('td');
+				const thirdText = document.createTextNode(result[0].material);
+				tdThird.style.width = '100px';
+				tdThird.appendChild(thirdText);
+				
+				trE1.appendChild(tdFirst);
+				trE1.appendChild(tdSecound);
+				trE1.appendChild(tdThird);
+				
+				tbodyE1.appendChild(trE1);
+				console.log(trE1);
+				*/
+			}
+		});
+		
+		
+	};
+</script>
 
 </body>
 </html>

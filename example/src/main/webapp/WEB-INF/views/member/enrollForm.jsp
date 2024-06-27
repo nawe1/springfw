@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="userId">* ID : </label>
                     <input type="text" class="form-control" id="userId" placeholder="Please Enter ID" name="userId" required> <br>
-					<div id="checkResult" style= "display:none; font-siez:0.7em;"></div><br><br/>
+					<div id="checkResult" style= "display:none; font-size:0.7em;"></div><br><br/>
                     <label for="userPwd">* Password : </label>
                     <input type="password" class="form-control" id="userPwd" placeholder="Please Enter Password" name="userPwd" required> <br>
 
@@ -92,7 +92,7 @@
             					data: {
             						checkId: $idInput.val()
             					},
-            					success: () =>{
+            					success: response =>{
             						
             						//console.log(response);
             						if(response.substr(4) ==='N'){ //증복이다!!
@@ -116,6 +116,8 @@
             			
             		});
             	});
+            	
+            	
             </script>
         </div>
         <br><br>

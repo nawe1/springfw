@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.spring.board.model.vo.Board;
 import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.common.template.PageTemplate;
 import com.kh.spring.notice.model.service.NoticeService;
 import com.kh.spring.notice.model.vo.Notice;
 
@@ -88,5 +91,37 @@ public class NoticeController {
 		return "notice/list";
 	}
 	
+	/*
+	@GetMapping("notice-search.do")
+	public String noticeSearch(String condition, String keyword,
+			@RequestParam(value="page",defaultValue="1") int page,Model model) {
+		
+		log.info("검색조건: {}", condition);
+		log.info("검색 키워드: {}", keyword);
+		
+		
+		Map<String,String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		int searchCount = noticeService.searchCount(map);
+		log.info("검색 조건에 부합하는 행의 수:{}", searchCount);
+		int currentPage =page;
+		int pageLimit =3;
+		int boardLimit = 3;
+		
+		PageInfo pageInfo = PageTemplate.getPageInfo(searchCount, currentPage, pageLimit, boardLimit);
+		
+	
+		RowBounds rowBounds = new RowBounds((currentPage - 1) * boardLimit,boardLimit);
 
+		List<Board> boardList = .findbyConditionAndKeyWord(map, rowBounds);
+		model.addAttribute("list",boardList);
+		model.addAttribute("pageInfo",pageInfo);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("condition",condition);
+		
+		return "board/list";
+	}
+	*/
 }

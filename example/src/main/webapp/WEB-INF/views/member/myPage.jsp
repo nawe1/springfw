@@ -20,6 +20,10 @@
                 <div class="form-group">
                     <label for="userId">* ID : </label>
                     <input type="text" class="form-control" id="userId" value="${ sessionScope.loginUser.userId }" name="userId" readonly> <br>
+                    
+                    <div id="checkResult" style="display:none; font-size:0.7em;"></div><br><br/>
+                     <label for="userPwd">* PWD : </label>
+                    <input type="text" class="form-control" id="userPwd" value="${ sessionScope.loginUser.userPwd }" name="userPwd"> <br>
 
                     <label for="userName">* Name : </label>
                     <input type="text" class="form-control" id="userName" value="${ sessionScope.loginUser.userName }" name="userName" required> <br>
@@ -57,12 +61,12 @@
                     	//$(() => {
                     		//$('input[value = ${session.loginUser.gender}]').attr('checked',true);
                     	//})
-                    	
+						
                     </script>
                 </div> 
                 <br>
                 <div class="btns" align="center">
-                    <button type="submit" class="btn btn-primary">수정하기</button>
+                    <button type="submit" id ="join-btn"class="btn btn-primary">수정하기</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">회원탈퇴</button>
                 </div>
             </form>
@@ -118,7 +122,53 @@
                 		
                 	}
                 	//const deletePrompt = () => prompt('탈퇴를 하고 싶으면  "어쩌고저쩌고"를 정확히 입력해주세요');
-                </script>
+             
+               	</script>
+               	<script>
+               	$(() => {
+            		const $pwdInput = $('.form-group #userPwd');
+            		const $checkResult = $('#checkResult');
+            		const $joinSubmit = $('#join-btn');
+            		
+            		$idInput.keyup(() =>{
+            			
+            			//console.log($idInput.val());
+            			
+            			//불필요한 DV접근을 제한하기 위해 다섯글자 이상으로 입력했을 때만 AJAX요청을 보내서 체크
+            			if($pwdInput.val().length >= 5){
+            				
+            				$.ajax({
+            					url:'pwdcheck.do',
+            					type: 'get',
+            					data: {
+            						checkPwd: $pwdInput.val()
+            					},
+            					success: response =>{
+            						
+            						//console.log(response);
+            						if(response.substr(4) ==='N'){ //증복이다!!
+            							$checkResult.show().css('color','crimson').text('중복입니다!');
+            							$joinSubmit.attr('disabled',true);
+            						}else{//중복이 아니다
+            							$checkResult.show().css('color','lightgreen').text('사용 가능합니다!');
+            							$joinSubmit.removeAttr('disabled');
+            						}
+            					},
+            					error: ()=>{
+            						console.log('아이디 중복체크용 AJAX통신 실패.. ㅠ');
+            					}
+            				});
+            				
+            			}
+            			else{
+            				$checkResult.hide();
+            				$joinSubmit.attr('disabled',true);
+            			}
+            			
+            		});
+            	});
+            	
+               	</script>
             </div>
         </div>
     </div>

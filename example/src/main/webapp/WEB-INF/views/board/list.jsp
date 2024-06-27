@@ -80,7 +80,7 @@
                 		</c:when>
                 		<c:otherwise>
 	                		<c:forEach var="board" items="${ list }" varStatus="status">
-			                    <tr class = "board-detail" id=${board.boardNo } onclick="location.href='board-detail?boardNo=${board.boardNo}'">
+			                    <tr class = "board-detail" id="board-${board.boardNo}">
 			                        <td>${board.boardNo }</td>
 			                        <td>${board.boardTitle }</td>
 			                        <td>${board.boardWriter }</td>
@@ -111,6 +111,7 @@
 						//console.log($(e.currentTaget).children().eq(0).text());
 						//find('선택자') <-- 활용도가 가장 높음
 						//children() <-- 하나씩 찾아가는 녀석
+						location.href ='board-detail?boardNo=' + e.currentTarget.id.split('-')[1];
 					}) ;
 					
 					//alert('하이하이');
@@ -129,8 +130,7 @@
 					// .on()
 					// 이벤트타입();
 			
-					location.href ='board-detail?boardNo=' + e.currentTarget.id.split('-')[1];
-				} 
+				});
 			</script>
             <div id="pagingArea">
                 <ul class="pagination">

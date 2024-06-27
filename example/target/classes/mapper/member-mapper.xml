@@ -91,6 +91,19 @@
 	  			 MEMBER
 	  	   WHERE
 	  			 USER_ID = #{checkId}
-	  
 	  </select>
+	  
+	  <!-- 비밀번호 중복 체크용 쿼리문 -->
+	<select id="pwdCheck" parameterType="string" resultType="_int">
+		SELECT
+				COUNT(*)
+		FROM
+				MEMBER
+		WHERE
+				USER_PWD =#{userPwd}
+	</select>	  
+	  
+	  
+	  
+	  
   </mapper>

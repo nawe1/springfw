@@ -96,14 +96,38 @@
             <!-- 댓글 기능은 나중에 AJAX 배우고 나서 구현할 예정! 우선은 화면구현만 해놓음 -->
             <table id="replyArea" class="table" align="center">
                 <thead>
+                 
+                 
+                 <c:choose>
+                 	<c:when test ="${ empty sessionScope.loginUser }">
+                    	<tr>
+                        	<th colspan="2">
+                            	<textarea class="form-control" 
+                            			  id="content"
+                            			   cols="55"
+                            			    rows="2" 
+                            			    style="resize:none; 
+                            			    width:100%;"></textarea>
+                        	</th>
+                        	<th style="vertical-align:middle"><button class="btn btn-secondary">등록하기</button></th> 
+                    	</tr>
+                 	</c:when>
+                 	<c:otherwise>
+                			<tr>
+                        		<th colspan="2">
+                            		<textarea class="form-control" 
+                           					  id="content" 
+                           					  cols="55" 
+                           					  rows="2" 
+                           					  style="resize:none; 
+                           					  width:100%;"></textarea>
+                        		</th>
+                        		<th style="vertical-align:middle"><button onclick="saveReply();"class="btn btn-secondary">등록하기</button></th> 
+                    		</tr>
+                   		</c:otherwise>
+                   	</c:choose>
                     <tr>
-                        <th colspan="2">
-                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%;"></textarea>
-                        </th>
-                        <th style="vertical-align:middle"><button class="btn btn-secondary">등록하기</button></th> 
-                    </tr>
-                    <tr>
-                        <td colspan="3">댓글(<span id="rcount">3</span>)</td>
+                        <td colspan="3">댓글(<span id="rcount"></span>)</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,6 +152,77 @@
         <br><br>
 
     </div>
+    
+    <script>
+    function saveReply(){
+    	
+	  if($('#content').val().trim() != ''){
+		  
+		  $.ajax({
+			url:'reply',
+			type:'post',
+			data:{
+				refBoardNo : ${ board.boardNo },
+				replyContent : $('#content').val(),
+				replyWriter : '${ sessionScope.loginUser.userId }'
+			},
+		  	success : result =>{
+		  	
+				//console.log(result);		
+				if(result == 'success'){
+					
+					selectReply();
+					$('#content').val('');
+				}
+		  	}
+		  	
+		  });
+		  
+		  
+	  }else{
+		  alertify.alert('장난꾸러기야~~~ 장난치지마라~~~~');
+	  }
+    
+    
+    	
+    }
+    
+    $(() => {
+        selectReply();
+    })
+
+
+	function selectReply(){
+
+	    $.ajax({
+	        url: 'reply',
+	        type: 'get',
+	        data: {
+	            boardNo: ${ board.boardNo} 
+	        },
+	        success : result => {
+	        	//console.log(result);
+	        	
+	        	let resultStr ='';
+	        	
+	        	for(let  i in result){
+	        		resultStr +='<tr>'
+	        				  + '<td>' +  result[i].replyWriter + '</td>'
+	        				  + '<td>' +  result[i].replyContent + '</td>'
+	        				  + '<td>' +  result[i].createDate + '</td>'
+	        				  + '</tr>';
+	        	}
+	        	
+	        	$('#replyArea tbody').html(resultStr);
+	        	$('#rcount').text(result.length);
+	        	
+	        	
+	        }
+	    
+	
+	    });
+}
+    </script>
     
     <jsp:include page="../common/footer.jsp" />
     

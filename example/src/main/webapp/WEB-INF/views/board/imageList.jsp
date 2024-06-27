@@ -21,7 +21,7 @@
 
 		.img-thumbnail:hover{
 			opacity: 0.8;
-			transform: scale(1.1);
+			transform: scale(1.1;
 			transition: all 1s ease-in-out;
 		}
 
@@ -47,34 +47,34 @@
 			jKMnwzXTUNhgahgGHcmipIO5C0HC21eKT/ACDXRS5EoW7ZRDSezHdFS/X+jJml7k4hxGWVZU24kfS4nP7w8O7I7vTFRGtKMlJXQlxaZbv9H6XFYvElp5xKH3mVIZB/McpUR64Gfar5rF8WU9EcC2FlJ/Q1KYWs9TTAILFxnEL42iS4eOmMZz7VyV+M5y7JjIyTwaBsI/aWqrzeOCywE26OScn6CVOkeAKlAfwVJqjvZ9aZFl0pEiTWw3JJW66nvBUokA+YGB7VIq4Klu2C7CojcGL/
 			AHOyOWyRbGnZG4KdflON/Bd2q3bUJTk4OAkbgCAckkjmXUURl1yQNFsmuyJjbUWC/Gt7cchSX4xZLawU7UpB6jG7OBjgYNO9FFVbuwG/UFt/bFlmW8OfCU+2Uocx+4rqk+xArlpe6Lu9nbfkJCJjalMS2x+R5B2rHpkZHkRTrVJ9siLrYr0q5Wta48eY2FKLK1IC1p4Vu2kfVjb7ehptKPk+BI9dvkxhuxQ4itpeU4t3ryE7Sn7EqH+Gs90tuN1mXFZXMfW4o9SpRJPqTyaQ1qUqfjj1Eydwq3uwjTTc24ru0lGURAFI83Dnb9gCfUiqhqcaC15P0u09FhIaWZG1P4qCoAjODwRg8miqpSg1HZMNmhrbeHrjfbhEjx0/IQfwnJKlcrf4JSkeCQeT44p5pl0bDRD01BAUpbj7YkvOK6uOOfWpR91GnqseVr4GBRRRVQCiiigDxR2pJOeBngZqNaghwtb6Pc+RWl4OoLkVZSQQ4nPBBGR3pI8zUmqvbzqdPZ9cZzUuN8xEuDqpkQocCfhqVjehWe7dzkZ/e6U2km38dkozlOY+XlONYICTwD4UnpdeZfz1xfkDGFqzwOKQ1sLQh7wFdYq/hyWlk4CVgk+Wa5V6Kkg11oeY3O0lanW1lW2OlpRPXcj6VfqDT5VSdg+pBJhv2V9z60/isgn0CwP0V7qq26xq0Ok2h4UUUUoAooooAKz72+XNEnUSIjThPyzSG1p7grlRx7KTV8XWeza7bJnyThqO2Vq88dw8z096yVqm6vXm9SZkg5cccUpWD3k848h09BXZw4Xl2IloZ6KKK0hIUUUUATXskuiLXrKE67tCFOBKlKOAkKBQT7bs+1aVvlxTaLRMuK0bxGZU5s3Y3EDgZ8zgVjlh1bLgcbOFJqR3PVN6k21qNIuEhxjAAbW6pSRjpwTjiuWtx/JJMbFq2Sz/AOvBtL+xy0sgA4UBKVn/AGUpZ7breoq+JbMDPG2SOnukVQR6mvKt/LS9EeT8NCp7a7QQd0B0HuxITT9o7tEtuqJTkZLYiOgfhhbwUHfEA8cjg4/4rLldo8l6PktLwD1SeQfaqy4lNrAKa9F6dvt3ejRIMGPJ25CnXWgepykIJ/
 			z49M91UKeTSmXOkTDl9zPOcedJadSp+OPUrKV9BRRRTCp//9k=';
-			const imgs = [...document.getElementsByClassName('img-fluid')];
+			const imgs = [...document.getElementsByClassName('img-fluid'];
 
-			imgs.map(e => {
+			imgs.map(e) => {
 				e.src = imgSrc; 
-			})
+			}
 	*/
-		//$('portfolio-link').click(e => {
-		//	console.log(e.currentTarget);
-		//});
+		//$('portfolio-link'.click(e) => {
+		//	console.log(e.currentTarget;
+		//};
 			
 		function detail(e){
 			/*
-			console.log($(e).find('.thumbnail-date').val());
-			console.log(${e}.find('.thumbnail-content').val());
-			console.log(${e}.find('.thumbnail-img').attr('src'));
-			console.log(${e}.find('.thumbnail-title').text());
-			console.log(${e}.find('.thumbnail-writer').text());
+			console.log($(e.find('.thumbnail-date'.val();
+			console.log(${e}.find('.thumbnail-content'.val();
+			console.log(${e}.find('.thumbnail-img'.attr('src');
+			console.log(${e}.find('.thumbnail-title'.text();
+			console.log(${e}.find('.thumbnail-writer'.text();
 			*/
-			$('img-modal').attr('src',$(e).find('.thumbnai;-img').attr('src'));
-			$('modal-title').html($(e)).find('.modal-title').text()):
-			$('modal-writer').html($(e)).find('.thumbnail-writer').text()):
-			$('modal-content').html($(e)).find('.thumbnail-content').val()):
-			$('modal-date').html($(e)).find('.thumbnail-date').text()):	
+			$('img-modal'.attr('src',$(e.find('.thumbnai;-img'.attr('src'))));
+			$('modal-title'.html($(e.find('.modal-title'.text()))):
+			$('modal-writer'.html($(e.find('.thumbnail-writer'.text()))):
+			$('modal-content'.html($(e.find('.thumbnail-content'.val()))):
+			$('modal-date'.html($(e.find('.thumbnail-date'.text()))):	
 			
-			//val(),html(),attr().css()
+			//val(,html(,attr(.css(
 			//요소 객체 속성에 접근하는 방법
-			//.val(인자값으로 전달) - .val()- 빈것을 보내면 Getter의 역할을 안에 인자값을 넣으면 Setter의 역할을 한다.
-			//.attr() - 나머지 싹 다 묶을떄 사용
+			//.val(인자값으로 전달 - .val(- 빈것을 보내면 Getter의 역할을 안에 인자값을 넣으면 Setter의 역할을 한다.
+			//.attr( - 나머지 싹 다 묶을떄 사용
 			//
 			//
 			
