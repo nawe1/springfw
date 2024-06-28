@@ -1,127 +1,50 @@
 package com.kh.spring.notice.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.common.model.vo.PageInfo;
-import com.kh.spring.common.template.PageTemplate;
 import com.kh.spring.notice.model.service.NoticeService;
+import com.kh.spring.notice.model.vo.Message;
 import com.kh.spring.notice.model.vo.Notice;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
-@RequiredArgsConstructor
 @Slf4j
+@RestController
+@RequestMapping("/notice")
+@RequiredArgsConstructor
 public class NoticeController {
-	
+
 	private final NoticeService noticeService;
 	
-	@GetMapping("noticePage")
-	public String forawrding(@RequestParam(value="page", defaultValue="1") int page, Model model) {
+	@GetMapping
+	public ResponseEntity<Message> findAll() {
+		
+		List<Notice> noticeList = noticeService.findAll();
+		
+		if(noticeList.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+								 .body(Message.builder()
+										      .message("조회결과가 존재하지 않아요~~")
+										      .build());
+			
+		}
+		
+		Message responseMsg = Message.builder()
+				                     .data(noticeList)
+				                     .message("조회 요청 성공~~")
+				                     .build();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(responseMsg);
+		
+		//log.info("조회된 공지사항 목록:{}",noticeList);
 		
 		
-		
-		//필요한 변수들 
-		int listCount;
-		int currentPage;
-		int pageLimit;
-		int noticeLimit;
-		
-		int maxPage;
-		int startPage;
-		int endPage;
-		
-		// 총 공지사항 글의 수
-		listCount = noticeService.noticeCount();
-		
-		//현재 페이지(사용자가 요청한 페이지)
-		currentPage = page;
-		
-		//페이징의 최대 개수
-		pageLimit=10;
-		
-		//한 페이지에 보여질 게시글의 최대 개수
-		noticeLimit=10;
-		
-		//가장 마지막 페이지가 몇 번 페이지인지(총 페이지 개수)
-		maxPage = (int)Math.ceil((double)listCount/ noticeLimit);
-		
-		//페이지 하단에 보여질 페이징바의 시작 수
-		startPage= (currentPage -1) / pageLimit * pageLimit + 1;
-		
-		//페이지 하단에 보여질 페이징바의 끝 수
-		endPage = startPage + pageLimit -1;
-		
-		//야호!
-		if(endPage > maxPage) endPage = maxPage;
-		
-		PageInfo pageInfo = PageInfo.builder().listCount(listCount)
-											  .currentPage(currentPage)
-											  .pageLimit(pageLimit)
-											  .noticeLimit(noticeLimit)
-											  .maxPage(maxPage)
-											  .startPage(startPage)
-											  .endPage(endPage)
-											  .build();
-		
-		Map<String,Integer> map= new HashMap();
-		
-		int startValue =(currentPage -1) * noticeLimit + 1;
-		int endValue = startValue + noticeLimit - 1;
-		
-		map.put("startValue", startValue);
-		map.put("endValue", endValue);
-		
-		List<Notice> noticeList = noticeService.findAll(map);
-		
-		model.addAttribute("list",noticeList);
-		model.addAttribute("pageInfo",pageInfo);
-		
-		
-		return "notice/list";
 	}
-	
-	/*
-	@GetMapping("notice-search.do")
-	public String noticeSearch(String condition, String keyword,
-			@RequestParam(value="page",defaultValue="1") int page,Model model) {
-		
-		log.info("검색조건: {}", condition);
-		log.info("검색 키워드: {}", keyword);
-		
-		
-		Map<String,String> map = new HashMap();
-		map.put("condition", condition);
-		map.put("keyword", keyword);
-		
-		int searchCount = noticeService.searchCount(map);
-		log.info("검색 조건에 부합하는 행의 수:{}", searchCount);
-		int currentPage =page;
-		int pageLimit =3;
-		int boardLimit = 3;
-		
-		PageInfo pageInfo = PageTemplate.getPageInfo(searchCount, currentPage, pageLimit, boardLimit);
-		
-	
-		RowBounds rowBounds = new RowBounds((currentPage - 1) * boardLimit,boardLimit);
-
-		List<Board> boardList = .findbyConditionAndKeyWord(map, rowBounds);
-		model.addAttribute("list",boardList);
-		model.addAttribute("pageInfo",pageInfo);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("condition",condition);
-		
-		return "board/list";
-	}
-	*/
 }

@@ -76,6 +76,11 @@ public interface BoardService {
 	//댓글 작성하기
 	int insertReply(Reply reply);
 	
+	//Board와 Board에 딸린 Reply랑 같이 조회할거임 ㅋㅋ
+	Board boardAndReply(int boardNo);
+
+	List<Board> findTopBoard();
+	
 	//---------------------------------------------- Top-N문서
 
 }

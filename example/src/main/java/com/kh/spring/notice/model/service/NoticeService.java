@@ -10,18 +10,14 @@ import com.kh.spring.notice.model.vo.Notice;
 @Service
 public interface NoticeService {
 	
-	//공지사항 전체 조회
-	int noticeCount();
+	List<Notice> findAll();
 	
-	List<Notice> findAll(Map<String,Integer> map);
+	Notice findById(int noticeNo);
 	
-	//공지사항 상세보기
-	int increaseCount(int noticeNo);
+	int save(Notice notices);
 	
-	//공지사항 수정하기
-	int update(Notice notice);
+	int update(Notice notices);
 	
-	
-	//공지사항 삭제하기
 	int delete(int noticeNo);
+
 }

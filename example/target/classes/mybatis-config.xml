@@ -12,12 +12,14 @@
 		<typeAlias type="com.kh.spring.member.model.vo.Member" alias="member"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="board"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Reply" alias="reply"/>
+		<typeAlias type="com.kh.spring.notice.model.vo.Notice" alias="notice"/>
 	</typeAliases>
 	<!-- 주의할 점! : 별칭 등록을 하기 위해서는 반드시 해당 클래스가 존재해야 함! -->
 	
 	<mappers>
 		<mapper resource="/mapper/member-mapper.xml"/>
 		<mapper resource="/mapper/board-mapper.xml"/>
+		<mapper resource="/mapper/notice-mapper.xml"/>
 		
 		
 	</mappers>

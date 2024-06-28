@@ -77,6 +77,16 @@ public class BoardRepository {
 	public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
 		return sqlSession.insert("boardMapper.insertReply",reply);
 	}
+
+
+	public Board boardAndReply(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.boardAndReply",boardNo);
+	}
+
+
+	public List<Board> findTopBoard(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectList("boardMapper.findTopBoard");
+	}
 	
 
 	

@@ -1,31 +1,32 @@
 package com.kh.spring.notice.model.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.notice.model.dao.NoticeMapper;
 import com.kh.spring.notice.model.vo.Notice;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-
 public class NoticeServiceImpl implements NoticeService{
-
+	
+	private final NoticeMapper noticeMapper;
+	
 	@Override
-	public int noticeCount() {
-		return 0;
+	public List<Notice> findAll() {
+		return noticeMapper.findAll();
 	}
 
 	@Override
-	public List<Notice> findAll(Map<String, Integer> map) {
+	public Notice findById(int noticeNo) {
 		return null;
 	}
 
 	@Override
-	public int increaseCount(int noticeNo) {
+	public int save(Notice notice) {
 		return 0;
 	}
 
@@ -38,5 +39,7 @@ public class NoticeServiceImpl implements NoticeService{
 	public int delete(int noticeNo) {
 		return 0;
 	}
+
+
 
 }

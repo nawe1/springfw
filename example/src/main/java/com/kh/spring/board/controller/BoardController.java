@@ -499,12 +499,12 @@ public class BoardController {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+	@ResponseBody
+	@GetMapping("board-reply")
+	public Board boardAndReply(int boardNo) {
+		return boardService.boardAndReply(boardNo);
+		
+	}
 	
 	
 	
