@@ -36,7 +36,7 @@
 			</thead>
 			<tbody>
 				<!-- BOARD테이블에서 count컬럼의 값이 높은 상위 5개의 게시글을 조회해서 뿌려줄 것 -->
-				
+				<!-- ajax로 삭제 기능 구현하기! -->
 			</tbody>
 		</table>
 		<br><br>
