@@ -14,4 +14,9 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.kh.spring.notice.model.vo.Message"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="com.kh.api.model.vo.AirVo"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
 </qualifiedTypeNameHistroy>

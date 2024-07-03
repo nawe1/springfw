@@ -2,4 +2,5 @@
 <aop-reference-model>
 <aop-project name="example"/>
 <aop-project name="ajaxProject"/>
+<aop-project name="apiProject"/>
 </aop-reference-model>
