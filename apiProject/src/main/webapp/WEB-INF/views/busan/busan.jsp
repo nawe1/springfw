@@ -35,10 +35,8 @@
 		var pageNo =1;
 		$(() =>{
 			getBeachInfo();
-		});
-		
+		});	
 		function getBeachInfo(){
-		
 			$.ajax({
 				url:'beach',
 				type:'get',
@@ -49,8 +47,9 @@
 					
 					//console.log(info.getBeachInfo.body.items.item);
 					
-					page += 1;
+					pageNo += 1;
 					const items = info.getBeachInfo.body.items.item;
+					//여기까지 값 잘 받음 확인
 					
 					let strEl = '';
 					for(let i in items){
@@ -58,19 +57,18 @@
 						const item = items[i];
 						
 						strEl += '<tr>'
-						      + '<td>' +item.insepcArea+ '</td>'
-						      + '<td>' +item.water1+ '</td>'
-						      + '<td>' +item.water2+ '</td>'
-						      + '<td>' +item.inpecYm+ '</td>'
+						      + '<td>' +item.inspecArea+ '</td>'
+						      + '<td>' +item.water01+ '</td>'
+						      + '<td>' +item.water02+ '</td>'
+						      + '<td>' +item.inspecYm+ '</td>'
 							  + '</tr>';
 					};
-				
-					$('#tbody').html(strEl);
+					$('tbody').html(strEl);
 			}
 		
-		});
+			});
 		}
-	
+
 	</script>
 
 </body>

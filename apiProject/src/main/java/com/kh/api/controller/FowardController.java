@@ -30,4 +30,9 @@ public class FowardController {
 	public String food() {
 		return "busan/busan2";
 	}
+	
+	@GetMapping("login")
+	public String login() {
+		return "kakao/kakao_login";
+	}
 }

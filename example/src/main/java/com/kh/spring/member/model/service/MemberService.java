@@ -1,5 +1,6 @@
 package com.kh.spring.member.model.service;
 
+import com.kh.spring.member.model.vo.CretVo;
 import com.kh.spring.member.model.vo.Member;
 
 
@@ -25,4 +26,7 @@ public interface MemberService {
 	int idCheck(String checkId);
 
 	// 메일인증
+	int sendMail(CretVo cert);
+	
+	boolean validate(CretVo cert);
 }

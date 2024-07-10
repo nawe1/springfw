@@ -75,9 +75,9 @@
             </form>
             <script>
             	$(() => {
-            		const $idInput = $('.form-group #userId');
-            		const $checkResult = $('#checkResult');
-            		const $joinSubmit = $('#join-btn');
+            		const $idInput = $('.form-group #userId'); //아이디
+            		const $checkResult = $('#checkResult');    //아이디 중복체크
+            		const $joinSubmit = $('#join-btn');        //회원가입 버튼
             		
             		$idInput.keyup(() =>{
             			

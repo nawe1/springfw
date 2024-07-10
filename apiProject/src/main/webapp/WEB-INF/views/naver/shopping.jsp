@@ -70,8 +70,8 @@
 	
 	<script>
 
-	$('#search-btn').click(() =>{
-		searchItem();
+	$('#search-btn').click(() =>{ //검색 버튼을 클릭하면
+		searchItem(); 
 	});
 	
 	function nextPage(){
@@ -83,7 +83,7 @@
 	
 	function searchItem(){
 		
-		const $keyword = $('#keyword').val();
+		const $keyword = $('#keyword').val();    //검색창
 		
 		$.ajax({
 			url:'product',
@@ -105,7 +105,7 @@
 				
 				let item = '';
 				
-				for(let i in items){
+				for(let i in items){ //부트스트랩을 가져옴!!!
 					
 					item +='<div class="card" style="width: 18rem;">'
 					     +  '<img src="'+ items[i].image +'" class="card-img-top" alt="...">'

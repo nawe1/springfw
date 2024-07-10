@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		
+	<!-- 
+		* root-context.xml
+		서버 구동과 동시에 web.xml파일을 가져서 바로 로딩되는 문서 == preloading
+		=> 서버 구동과 동시에 바로 세팅(Bean등록)해야 하는 내용들을 작성
+		주로 DB접속정보, 트랜젝션 처리, 외부 모듈 연결 등등..
+	 -->	
+	 
+	 <!-- BasicDataSource.class에서 가져옴 -->
+	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close"> 
+	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	 	<property name="username" value="C##BCLASS"/>
+	 	<property name="password" value="BCLASS"/>
+	 </bean>
+	 
+	 <!-- 
+	 	객체가 필요할 떄 내부적으로 실행되는 코드
+	 	
+	 	BasicDataSource dataSource = new BasicDataSource();
+	  	dataSource.setDriverClassNmae(oracle.jdbc.driver.OracleDriver);
+	  	dataSource.seturl(jdbc:oracle:thin:@localhost:1521:xe);
+	  	dataSource.setUserName(C##BCLASS);
+	  	dataSource.setPassword(BCLASS);
+	 -->
+	 
+	 <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+	 	<property name="configLocation" value="classpath:mybatis-config.xml"/> <!-- mybatis 설정 내용 -->
+	 	<property name="dataSource" ref="dataSource"/>
+	 </bean>
+	 
+	 
+	 
+	 <!-- 
+	 	SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+	  	sqlSessionFactory.setConfigLocation(classpath:mybatis-config.xml);
+	  	sqlSessionFactory.setDataSource(dataSource);
+	  -->
+	  
+	  <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession"> <!-- 여기서 오류가 발생하는 이유는 기본 생성자가 없어서 기본 객체를 생성할 수 없다고 오류가 발생하는 것이다. -->
+	  		<constructor-arg ref="sqlSessionFactory" />
+	  </bean>
+		
+	  <!-- 
+	  	SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory);
+	   -->	 
+		
+		<!--  파일 업로드 관련 빈 등록 -->
+		<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+			<property name="maxUploadSize" value="100000000"/>
+			<property name="maxInMemorySize" value="100000000"/>		
+		</bean>
+		
+		<!-- 만들어놓은 매퍼 경롤르 넣어준다. dao - NoticeMapper다 -->
+		<mybatis-spring:scan base-package="com.kh.spring.notice.model.dao"/>
+</beans>

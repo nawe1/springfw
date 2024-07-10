@@ -3,6 +3,7 @@ package com.kh.spring.member.model.repository;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.member.model.vo.CretVo;
 import com.kh.spring.member.model.vo.Member;
 
 // Repository: 저장소
@@ -29,6 +30,19 @@ public class MemberRepository {
 	public int idCheck(SqlSessionTemplate sqlSession, String checkId) {
 		return sqlSession.selectOne("memberMapper.idCheck",checkId);
 	}
+
+	public int sendMail(SqlSessionTemplate sqlSession, CretVo cert) {
+		return sqlSession.insert("memberMapper.sendMail",cert);
+	}
+
+	public boolean validate(SqlSessionTemplate sqlSession, CretVo cert) {
+		CretVo result= sqlSession.selectOne("memberMapper.validate",cert);
+		return result != null;
+	}
+
+	public void deleteCode(SqlSessionTemplate sqlSession, CretVo cert) {
+		sqlSession.delete("memberMapper.deleteCode",cert);
+	}
 	
-	
+
 }

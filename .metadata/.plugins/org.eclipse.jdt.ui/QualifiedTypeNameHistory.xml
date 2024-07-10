@@ -6,7 +6,6 @@
     <fullyQualifiedTypeName name="com.kh.spring.common.model.vo.PageInfo.PageInfoBuilder"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.template.PageTemplate"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.model.vo.PageInfo"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
@@ -18,5 +17,16 @@
     <fullyQualifiedTypeName name="com.kh.api.model.vo.AirVo"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.google.gson.JsonParser"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="javax.print.DocFlavor.URL"/>
+    <fullyQualifiedTypeName name="org.springframework.expression.ParseException"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="java.net.MalformedURLException"/>
+    <fullyQualifiedTypeName name="com.kh.artspark.member.vo.Member"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="javax.activation.DataSource"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.Format"/>
+    <fullyQualifiedTypeName name="java.lang.module.ModuleDescriptor.Builder"/>
+    <fullyQualifiedTypeName name="org.springframework.mail.javamail.MimeMessageHelper"/>
 </qualifiedTypeNameHistroy>

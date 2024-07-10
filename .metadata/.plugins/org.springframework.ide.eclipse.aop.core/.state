@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="example"/>
+<aop-project name="Test1"/>
 <aop-project name="ajaxProject"/>
 <aop-project name="apiProject"/>
 </aop-reference-model>

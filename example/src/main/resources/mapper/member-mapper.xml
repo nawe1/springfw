@@ -102,8 +102,38 @@
 		WHERE
 				USER_PWD =#{userPwd}
 	</select>	  
-	  
-	  
-	  
+	 <insert id="sendMail" parameterType="com.kh.spring.member.model.vo.CretVo">
+	 	INSERT
+	 	INTO
+	 			TB_CERT
+	 	VALUES
+	 	
+	 			(
+	 			#{who},
+	 			#{code},
+	 			SYSDATE
+	 			)
+
+	 </insert>
+	 <select id="validate" parameterType="com.kh.spring.member.model.vo.CretVo" resultType="com.kh.spring.member.model.vo.CretVo">	 
+		SELECT  WHO,
+		 		CODE,
+		 		ENROLL_DATE 
+		 FROM 
+		        TB_CERT
+         WHERE  WHO=#{who} 
+           AND  CODE=#{code} 
+           AND  ENROLL_DATE BETWEEN SYSDATE -3/24/60 AND SYSDATE;
+
+	 </select>
+	  <delete id="deleteCode" parameterType="com.kh.spring.member.model.vo.CretVo">
+	  	DELETE
+	  	FROM		
+	  			TB_CRET
+	  	WHERE
+	  			WHO=#{who}
+	  	AND
+	  			CODE=#{code}
+	  </delete>
 	  
   </mapper>

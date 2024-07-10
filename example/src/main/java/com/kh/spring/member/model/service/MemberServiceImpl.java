@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.member.model.repository.MemberRepository;
+import com.kh.spring.member.model.vo.CretVo;
 import com.kh.spring.member.model.vo.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -51,4 +52,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepository.idCheck(sqlSession, checkId);
 	}
 	
+	@Override
+	public int sendMail(CretVo cert) {
+	    return memberRepository.sendMail(sqlSession,cert);
+	}
+
+	@Override
+	public boolean validate(CretVo cert) {
+		boolean result = memberRepository.validate(sqlSession,cert);
+	
+		if(result) {
+			memberRepository.deleteCode(sqlSession,cert);
+		}
+		return result;
+	}
 }

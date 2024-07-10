@@ -1,7 +1,16 @@
 package com.kh.spring.member.controller;
 
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.util.Random;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.service.MemberService;
+import com.kh.spring.member.model.vo.CretVo;
 import com.kh.spring.member.model.vo.Member;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 //import com.kh.spring.member.model.service.MemberService;
@@ -29,6 +40,7 @@ public class MemberController {
 	
 	private final MemberService memberService;
 	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	private final JavaMailSender sender;
 	/*
 	@RequestMapping("login.do") // RequestMapping타입의 에노테이션을 붙임으로서 HandlerMapping등록
 	public String login(HttpServletRequest requset) {
@@ -394,6 +406,51 @@ public class MemberController {
 		return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
 	}
 	
+	@GetMapping("/mail-input")
+	public String forwardInputForm() {
+		return "mail/input";
+	}
+
+	@PostMapping("auth-mail")
+	public String authMailService(String email, HttpServletRequest request) throws MessagingException {
+		
+		//만약 6자리라면? =>정수로 만들게되면 앞에 0이 오면 날라가버리기 때문에 문자열 형태로 만들 수 밖에 없다
+		String remoteAddr= request.getRemoteAddr();
+	
+		//랜덤 함수를 사용한다(굳이 math.random하지 않는다!)
+		Random r = new Random();
+		int i = r.nextInt(100000);
+		//억지로 6자리를... 쓰다말았다.
+		Format format = new DecimalFormat("000000");
+		String code = format.format(i);
+		
+		CretVo cert = CretVo.builder().who(remoteAddr).code(code).build();
+		
+		int result = memberService.sendMail(cert);
+		
+		//메일 보내는 것은 딱 이거 6줄 뿐
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message,false,"UTF-8");
+		
+		helper.setTo(email);
+		helper.setSubject("[KH정보교육원 B강의장] 인증번호 전송해 드립니다.");
+		helper.setText("인증번호: " + code);
+		
+		sender.send(message);
+		
+		return "mail/check";
+	}
+	@ResponseBody
+	@PostMapping("checked")
+	public String checkCode(String code, HttpServletRequest request) {
+		
+		CretVo cert = CretVo.builder().who(request.getRemoteAddr()).code(code).build();
+		
+		boolean result = memberService.validate(cert);
+		
+		return "result : " + result;
+	}
+
 	
 
 }

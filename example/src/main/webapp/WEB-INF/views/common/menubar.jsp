@@ -132,6 +132,32 @@
             </div>
         </div>
     </div>
+    <%-- 기존 코드 아래에 추가 --%>
+<c:if test="${sessionScope.loginUser ne null and sessionScope.loginUser.memCategory eq 'D'}">
+    <!-- 블랙리스트 사용자를 위한 모달 -->
+    <div class="modal fade" id="blacklistModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">계정 차단 알림</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>귀하의 계정은 현재 차단되어 있습니다. 자세한 내용은 관리자에게 문의해 주세요.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#blacklistModal').modal('show');
+        });
+    </script>
+</c:if>
     
     <br clear="both">
 </body>
